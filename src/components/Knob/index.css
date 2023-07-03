@@ -1,0 +1,40 @@
+.Knob {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100px;
+}
+
+.Knob-circle {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  border: solid 1px #888;
+  border-radius: 50%;
+}
+
+.Knob-pointer {
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 0;
+  width: 2px;
+  height: 25%;
+  background-color: #222;
+  transform-origin: center 200%;
+}
+
+.Knob-mark {
+  position: absolute;
+  left: calc(50% - 1px);
+  top: -10%;
+  width: 2px;
+  height: 10%;
+  background-color: #222;
+  transform-origin: center 600%;
+}
+
+.Knob-label-out-of-range {
+  color: #a22;
+}

@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { ChangeEvent, useMemo, useState } from 'react';
 import './App.css';
+import { CelsiusKnob } from "./components/CelsiusKnob";
+import { KelvinKnob } from "./components/KelvinKnob";
+import { FahrenheitKnob } from "./components/FahrenheitKnob";
 
-function App() {
+export function App() {
+  const [celsius, setCelsius] = useState(43);
+  const kelvin = useMemo(() => celsius + 273, [celsius]);
+  const fahrenheit = useMemo(() => celsius * 9 / 5 + 32, [celsius]);
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const val = Number(e.target.value);
+    console.log(val);
+    setCelsius(val);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="number"
+        value={celsius}
+        onChange={onChange}
+        className="CelsiusInput"
+      />
+
+      <CelsiusKnob min={0} max={100} value={celsius} />
+      <KelvinKnob min={0} max={500} value={kelvin} />
+      <FahrenheitKnob min={0} max={150} value={fahrenheit} />
     </div>
   );
 }
-
-export default App;
