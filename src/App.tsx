@@ -6,7 +6,7 @@ import { FahrenheitKnob } from "./components/FahrenheitKnob";
 
 export function App() {
   const [celsius, setCelsius] = useState(43);
-  const kelvin = useMemo(() => celsius + 273, [celsius]);
+  const kelvin = useMemo(() => celsius + 273.15, [celsius]);
   const fahrenheit = useMemo(() => celsius * 9 / 5 + 32, [celsius]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

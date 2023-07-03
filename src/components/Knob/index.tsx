@@ -35,7 +35,12 @@ export function Knob({ min, max, value, unit, className }: KnobProps) {
 
     console.log('=', value, range, arcRange, a);
     return a;
-  }, [min, max, value])
+  }, [min, max, value]);
+
+  const displayValue = useMemo(() => {
+    if (Number.isInteger(value)) return value;
+    return value.toFixed(3).replace(/\.?0+$/, '');
+  }, [value])
 
   return (
     <div className={cx('Knob', className)}>
@@ -46,7 +51,7 @@ export function Knob({ min, max, value, unit, className }: KnobProps) {
       </div>
 
       <div className={cx('Knob-label', {'Knob-label-out-of-range': outOfRange})}>
-        {value} {unit}
+        {displayValue} {unit}
       </div>
     </div>
   )
